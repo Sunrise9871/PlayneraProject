@@ -9,6 +9,7 @@ namespace Surfaces
 
         [SerializeField] private Vector2 _size = new(5f, 1f);
 
+        // Рисует визульную модель поверхности на сцене
         private void OnDrawGizmos()
         {
             var center = transform.position;
@@ -20,6 +21,7 @@ namespace Surfaces
             Gizmos.DrawWireCube(center, new Vector3(_size.x, _size.y, 0));
         }
 
+        // Возвращает ближайшую точку поверхности для перемещения объекта
         public Vector3 GetClosestPoint(Vector3 itemPosition)
         {
             var halfSize = _size / 2f;

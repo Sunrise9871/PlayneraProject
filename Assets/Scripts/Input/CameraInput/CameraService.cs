@@ -10,6 +10,7 @@ namespace Input.CameraInput
         private Camera _mainCamera;
         private float _minX, _maxX;
 
+        // Zenject
         public CameraService(SpriteRenderer backgroundSprite)
         {
             _backgroundSprite = backgroundSprite;
@@ -23,6 +24,7 @@ namespace Input.CameraInput
             SetCameraBounds();
         }
 
+        //Перемещение камеры
         public void Drag(Vector2 drugDelta)
         {
             var worldDelta = ScreenToWorldDelta(drugDelta);
@@ -33,6 +35,7 @@ namespace Input.CameraInput
             _mainCamera.transform.position = newPosition;
         }
 
+        // Установка пределов движения камеры, чтобы не уйти за пределы background'а
         private void SetCameraBounds()
         {
             var cameraHeight = _mainCamera.orthographicSize * 2f;
@@ -43,12 +46,14 @@ namespace Input.CameraInput
             _maxX = roomBounds.max.x - cameraWidth / 2f;
         }
 
+        // Установка вертикального размера камеры в зависимости от размера background'а
         private void SetCameraSize()
         {
             var roomHeight = _backgroundSprite.bounds.size.y;
             _mainCamera.orthographicSize = roomHeight / 2f;
         }
 
+        // Перевод координат экрана в координаты сцены
         private Vector3 ScreenToWorldDelta(Vector2 screenDelta)
         {
             var screenPoint =

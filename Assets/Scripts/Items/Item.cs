@@ -24,6 +24,7 @@ namespace Items
             var rayStart = _itemCollider.bounds.min;
             var hit = Physics2D.Raycast(rayStart, Vector2.down, Mathf.Infinity, _layerMask);
 
+            // Получает компонент Surface под объектом
             var surface = hit.collider?.GetComponent<Surface>();
             if (surface is not null)
             {
@@ -36,6 +37,7 @@ namespace Items
             MoveToSurface(Vector3.zero);
         }
 
+        // Вычисляет начальную и конечную точки для перемещения предмета
         private void MoveToSurface(Vector3 targetPosition)
         {
             var startPosition = transform.position;
@@ -56,6 +58,7 @@ namespace Items
             StartCoroutine(MoveToSurfaceCoroutine(startPosition, endPosition));
         }
 
+        // Плавно перемещает предмет от начальной к конечной точке
         private IEnumerator MoveToSurfaceCoroutine(Vector3 startPosition, Vector3 endPosition)
         {
             var elapsedTime = 0f;

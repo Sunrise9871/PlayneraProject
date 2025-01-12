@@ -10,12 +10,12 @@ namespace Input.CameraInput
         
         public override void InstallBindings()
         {
-            Application.targetFrameRate = _targetFramerate;
+            Application.targetFrameRate = _targetFramerate; // 60 fps
             
             Container
-                .BindInterfacesAndSelfTo<CameraService>()
-                .AsSingle()
-                .WithArguments(_backgroundSprite);
+                .BindInterfacesAndSelfTo<CameraService>() // Используя интерфейс ICameraService, использовать реализацию CameraService
+                .AsSingle() // Как единственный экземпляр
+                .WithArguments(_backgroundSprite); // Передавая аргументы в конструктор
         }
     }
 }
